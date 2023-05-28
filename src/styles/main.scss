@@ -3,6 +3,10 @@
 @use 'hero';
 @use 'shows';
 @use 'plans';
+@use 'avaible-devices';
+@use 'faq';
+@use 'footer';
+@use 'header';
 
 
 @font-face {
@@ -34,24 +38,44 @@ body {
     color: variaveis.$corTextoSegundaria
 }
 
-.title--big {
-    @include title
+.title {
+    @include title;
+    @media (max-width: 768px) {
+        @include title(24px)
+    }
 }
 
 .title--small {
-    @include title(28px)
+    @include title(28px);
+
+    @media (max-width: 768px) {
+        @include title(22px)
+    }
+
 }
 
 .text--big {
     @include text(20px);
+
+    @media (max-width: 768px) {
+        @include text(15px)
+    }
 }
 
 .text--medium {
     @include text;
+
+    @media (max-width: 768px) {
+        @include text(14px)
+    }
 }
 
 .text--small {
     @include text(12px);
+
+    @media (max-width: 768px) {
+        @include text(11px)
+    }
 }
 
 .link-text {
@@ -61,15 +85,94 @@ body {
 }
 
 .button {
-        display: block;
+        display: flex;
         width: 100%;
         height: 60px;
         font-size: 18px;
+        justify-content: center;
         color: variaveis.$corTextoSegundaria;
-        margin-bottom: 20px;
-        margin-top: 2vw;
-        background-color: variaveis.$corDoBotao;
+        background-color: variaveis.$corDoBotaoPrimario;
         border-radius: 4px;
         border: none;
         cursor: pointer;
+        padding: 8px 14px;
+        letter-spacing: 1px;
+        border: 1px solid variaveis.$corDoBotaoPrimario; ;
+        align-items: center;
+
+        &:hover {
+            background-color: lighten(variaveis.$corDoBotaoPrimario, 5%);
+        }
+
+        &--secundary {
+            background-color: variaveis.$CorDoBotaoSegundaria;
+            border-color: variaveis.$CorDoBotaoSegundaria;
+
+            &:hover {
+                background-color: lighten(variaveis.$CorDoBotaoSegundaria, 5%);
+            }
+        }
+
+        &--dark {
+            background-color: rgba(variaveis.$CorDoBotaoDark, 0.8);
+            border-color: variaveis.$corTextoSegundaria;
+
+            &:hover {
+                background-color: variaveis.$corTextoSegundaria;
+                color: variaveis.$corDeFundo
+            }
+        }
+}
+
+.image-text-section  {
+    padding: 5.6vw;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+
+    @media (max-width: 768px) {
+        display: block;
+    }
+    
+    
+    img {
+        max-width: 100%;
+
+    }
+
+    &__text_container {
+        padding: 0 2vw;
+
+        h2 {
+            margin-bottom: 24px;
+            
+        }
+    }
+
+    &--image-full-width {
+        display: block;
+        position: relative;
+        
+        img {
+            width: 100%;
+            
+        }
+
+        &__text_container {
+            position: absolute;
+            top: 0;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            left: 50%;
+            width: calc(50% - 5.6vw);
+            
+            @media (max-width: 768px) {
+                position: relative;
+                left: 0;
+                width: 100%;
+            }
+        }
+    }
 }
